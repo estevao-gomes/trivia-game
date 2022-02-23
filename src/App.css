@@ -1,38 +1,62 @@
 .App {
   text-align: center;
+  background-color: white;
+}
+.title{
+  display: flexbox;
+  margin: 10% 25% 5% 25%;
+  color: rgba(0, 0, 0, 0.603);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.newgame{
+  display: inline-block;
+  background-color: blueviolet;
   color: white;
+  padding: 5px;
+  border-radius: 15px;
+  border-style: solid;
+  margin: 10px;
+  padding: 10px;
 }
-
-.App-link {
-  color: #61dafb;
+.newgame:hover{
+  cursor: pointer;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.question{
+  color: rgb(127, 129, 255);
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 300px 300px 300px 300px;
+  margin: 20px;
+}
+.question > h3{
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+.answer{
+  grid-row-start: 2;
+  width: 80%;
+  display: inline-block;
+  border-style: solid;
+  border-radius: 15px;
+  margin: 10px;
+}
+.setAnswer{
+  color: white;
+  background-color: rgb(127, 129, 255);
+  grid-row-start: 2;
+  width: 80%;
+  display: inline-block;
+  border-style: solid;
+  border-radius: 15px;
+  margin: 10px;
+}
+.checkButton{
+  display: inline-block;
+  border-style: solid;
+  border-radius: 15px;
+  margin: 10px;
+  padding: 10px;
+}
+.setAnswer:hover, .checkButton:hover, .answer:hover{
+  cursor: pointer;
 }
