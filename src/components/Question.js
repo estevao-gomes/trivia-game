@@ -10,6 +10,7 @@ export default function Question(props){
         }
         return values
     })
+    const [correctAnswerPos, setCorrectAnswerPos] = React.useState(0)
     const[answers, setAnswers] = React.useState(()=>{
         return getAnswers()
     })
@@ -25,6 +26,11 @@ export default function Question(props){
         setChoices(values)
     }, [props.QuestionData])
 
+    React.useEffect(()=>{
+        const choice = choices[correctAnswerPos] ? true : false
+        props.getResults(choice)
+    }, [props.check])
+
     function getNAnswers(){
         let value = props.QuestionData.incorrect_answers.length + 1
         let values = []
@@ -32,15 +38,26 @@ export default function Question(props){
             values.push(false)
         }
         return values
+    }      
+
+    function replaceSymbols(string){
+        const replacers = {
+            '&quot;': '"',
+            '&#039;': '\'',
+            '&amp;': '&'
+        }
+        string = string.replace(/[&].{3}[;]/g, (match)=>replacers[match])
+        return string.replace(/[&].{4}[;]/g, (match)=>replacers[match])
     }
 
     function getAnswers(){
         const value = props.QuestionData.incorrect_answers.length
         let number = Math.floor(Math.random()*value)
+        setCorrectAnswerPos(number)
         let newAnswers = []
         for(let i = 0; i < value; i++){
-            const incorrect_answer = props.QuestionData.incorrect_answers[i]
-            const correct_answer = props.QuestionData.correct_answer
+            const incorrect_answer = replaceSymbols(props.QuestionData.incorrect_answers[i])
+            const correct_answer = replaceSymbols(props.QuestionData.correct_answer)
             if(i !== number){
                 newAnswers.push(incorrect_answer)
             }
@@ -66,19 +83,19 @@ export default function Question(props){
         if(props.check){
             if(answers[index]===props.QuestionData.correct_answer){
                 return(
-                <div className="setAnswer" id={index} style={{backgroundColor: "green"}} key={index}>
+                <div className="setAnswer" id={index} style={{backgroundColor: "green"}}>
                     <h4>{answers[index]}</h4>
                 </div>
                 )
             }else{
                 if(choices[index]){
                     return(
-                        <div className={choice ? "setAnswer" : "answer"} id={index} style={{backgroundColor: "red"}} key={index}>
+                        <div className={choice ? "setAnswer" : "answer"} id={index} style={{backgroundColor: "red"}}>
                             <h4>{answers[index]}</h4>
                         </div>
                 )}else{
                     return(
-                        <div className="answer" id={index} key={index}>
+                        <div className="answer" id={index}>
                             <h4>{answers[index]}</h4>
                         </div>
                     )
@@ -86,18 +103,16 @@ export default function Question(props){
             }
         }else{
             return(
-                <div className={choice ? "setAnswer" : "answer"} onClick={toggle} id={index} key={index}>
+                <div className={choice ? "setAnswer" : "answer"} onClick={toggle} id={index}>
                     <h4>{answers[index]}</h4>
                 </div>
             )
         }
     })
-
-    console.log("I'm reloading")
     
     return(
         <div className="question">
-            <h3>{props.QuestionData.question}</h3>
+            <h3>{replaceSymbols(props.QuestionData.question)}</h3>
             {questions}
         </div>
     )
