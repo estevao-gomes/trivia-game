@@ -15,7 +15,7 @@ function App() {
   const [QuestionData, setQuestions] = React.useState([])
   const [result, setResult] = React.useState(0)
 
-
+  console.log("I'm reloading")
   React.useEffect(()=>{
     fetch("https://opentdb.com/api.php?amount=5")
       .then(res => res.json())
@@ -42,17 +42,17 @@ function App() {
 
   if(main){
     return (
-      <div className="App">
+      <div className="initialPage">
         <Title />
-        <NewGame toggle={changePage}/>
+        <NewGame toggle={changePage} main={main}/>
       </div>
     );
   }else{
     return(
-      <div className="App">
+      <div className="questionsPage">
         {questions}
+        {check ? <NewGame toggle={changePage} main={main}/> : <Check checkAnswers={checkAnswers}/>}
         {check && <Result result={result}/>}
-        {check ? <NewGame toggle={changePage}/> : <Check checkAnswers={checkAnswers}/>}
       </div>
     )
   }

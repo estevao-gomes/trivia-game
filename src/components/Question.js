@@ -44,9 +44,11 @@ export default function Question(props){
         const replacers = {
             '&quot;': '"',
             '&#039;': '\'',
-            '&amp;': '&'
+            '&amp;': '&',
+            '&eacute;': 'é'
         }
         string = string.replace(/[&].{3}[;]/g, (match)=>replacers[match])
+        string = string.replace(/[&].{6}[;]/g, (match)=>replacers[match])
         return string.replace(/[&].{4}[;]/g, (match)=>replacers[match])
     }
 

@@ -1,27 +1,25 @@
-.App {
+.initialPage{
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto;
   background-color: white;
   margin: 0 5%;
-}
-.title{
-  display: flexbox;
-  margin: 10% 25% 5% 25%;
-  color: rgba(0, 0, 0, 0.603);
-}
-
-.newgame{
-  background-color: blueviolet;
-  color: white;
-  padding: 5px;
-  border-radius: 15px;
-  border-style: solid;
-  margin: 10px;
-  padding: 10px;
   text-align: center;
 }
-.newgame:hover{
-  cursor: pointer;
+.title{
+  position: relative;
+  column-gap: 50px;
+  margin: 10% 25% 5% 25%;
+  color: rgba(0, 0, 0, 0.603);
+  align-items: center;
+}
+.questionsPage{
+  /* height: 100vh;
+  overflow: scroll; */
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto auto auto;
+  background-color: white;
+  margin: 0 5%;
 }
 .question{
   color: rgb(127, 129, 255);
@@ -36,7 +34,8 @@
   grid-column-start: 1;
   grid-column-end: 5;
 }
-.answer{
+
+.answer, .setAnswer{
   grid-row-start: 2;
   width: 80%;
   display: inline-block;
@@ -44,44 +43,57 @@
   border-radius: 15px;
   margin: 10px;
   text-align: center;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-   user-select: none; /* Non-prefixed version, currently*/
 }
 .setAnswer{
-  text-align: center;
   color: white;
   background-color: rgb(127, 129, 255);
-  grid-row-start: 2;
-  width: 80%;
-  display: inline-block;
-  border-style: solid;
-  border-radius: 15px;
-  margin: 10px;
+}
+.newgame, .checkButton, .renew, .answer, .setAnswer{
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Old versions of Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
-   user-select: none; /* Non-prefixed version, currently*/
+  user-select: none; /* Non-prefixed version, currently*/
 }
-.checkButton{
-  display: flex;
-  border-style: solid;
+.newgame, .checkButton, .renew{
+  background-color: blueviolet;
+  color: white;
+  padding: 5px;
   border-radius: 15px;
+  border-style: solid;
   margin: 10px;
   padding: 10px;
+  text-align: center;
+  font-size: larger;
+  font-weight: 700;
+  width: fit-content;
 }
-.setAnswer:hover, .checkButton:hover, .answer:hover{
+.checkButton, .renew{
+  grid-column-start: 2;
+  grid-row-start: 1;
+  height: fit-content;
+  margin-top: 10%;
+}
+.newgame{
+  font-size: larger;
+  font-weight: 700;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.setAnswer:hover, .checkButton:hover, .answer:hover, .newgame:hover{
   cursor: pointer;
 }
 .result{
-  display: flex;
-  /* grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2; */
-
+  display: grid;
+  grid-template-rows: 33.3% 33.3% 33.3%;
+  text-align:center;
+  grid-row-start: 2;
+  grid-column-start: 2;
+  margin-left: auto;
+  margin-right: 50%;
+  font-size: x-large;
+  font-weight: 700;
+  color: blueviolet;
 }
